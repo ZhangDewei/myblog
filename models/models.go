@@ -40,5 +40,5 @@ type Replay struct{
 func CreateDB(){
 	orm.RegisterModel(new(User), new(Article), new(Replay))
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
-	orm.RegisterDataBase("default", "mysql", "root:root@/myblog?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", "root:@/myblog?charset=utf8")
 }
