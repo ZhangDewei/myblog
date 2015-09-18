@@ -22,3 +22,11 @@ func (this *HomeController) Get(){
 	this.Data["Name"] = "dewei"
 	this.TplNames = "index.html"
 }
+
+type VideoController struct{
+	beego.Controller
+}
+
+func (this *VideoController) Get(){
+	this.TplNames = "myvideo.html"
+}

@@ -1,0 +1,57 @@
+body, html, p, ul, h1, h2, h3, h4, h5, h6, a, ol, table{
+	margin:0;padding:0;
+}
+
+html {
+	height:100%;
+}
+
+body {
+	margin:0 auto;
+	width:1000px;
+	height:100%;
+}
+
+ul, li {
+	list-style:none;
+}
+
+.nav {
+	margin-top:10px;
+	border-radius:8px;
+	box-shadow:1px 1px 5px #0066ff;
+	height:50px;
+}
+
+.nav > ul{
+	height:50px;
+	display:inline-block;
+	float:right;
+}
+
+.nav > ul > li{
+	display:inline-block;
+	width:100px;
+	margin-left:1px;
+	line-height:50px;
+	cursor:pointer;
+	color:#c5c5c5;
+	transition:.5s linear;
+}
+
+.nav > ul > li:hover {
+	color:#0066ff;
+}
+
+.my-logo {
+	text-decoration:none;
+	margin-left:10px;
+	height:50px;
+	line-height:50px;
+	float:left;
+	color:#0066ff;
+}
+
+.login-regist{
+	font-size:10px;
+}
