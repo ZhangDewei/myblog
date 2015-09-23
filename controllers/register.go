@@ -8,7 +8,8 @@ import (
     "os/exec"
     "path/filepath"
 	"strings"
-	"app/models"
+	"myblog/models"
+	"strconv"
 )
 
 func getPath() string{
@@ -16,6 +17,19 @@ func getPath() string{
     path, _ := filepath.Abs(file)
 	result := strings.Trim(path, "myblog")
 	return result
+}
+
+func checkUsername(name string) bool{
+	o := orm.NewOrm()
+	o.Using("default")
+	user := models.User{Name: name}
+	err := o.Read(&user)
+	
+	if err == orm.ErrNoRows || err == orm.ErrMissPK{
+		return false
+	}else{
+		return true
+	}
 }
 
 type RegisterController struct{
@@ -37,12 +51,23 @@ func (this *RegisterController) Post(){
 	email := this.Input().Get("email")
 	gender := this.Input().Get("gender")
 	age := this.Input().Get("age")
+	
+	checkUser := checkUsername(username)
+	
+	if checkUser == false{
+		this.Redirect("/register", 302)
+		return
+	}
+	
 	var path = getPath() + "static/img/head/"
 	var img_header string = ""
 	if img_err == nil{
 		img_header = fmt.Sprint(path, h.Filename)
 		this.SaveToFile("user-header", img_header)
 	}
+	
+	int_age, _ := strconv.Atoi(age)
+	int_gender, _ := strconv.Atoi(gender)
 	
 	o := orm.NewOrm()
 	o.Using("default")
@@ -51,12 +76,11 @@ func (this *RegisterController) Post(){
 	userObj.Name = username
 	userObj.Password = password
 	userObj.Email = email
-	userObj.Gender = gender
-	userObj.Age = age
+	userObj.Gender = int32(int_gender)
+	userObj.Age = int32(int_age)
 	userObj.Avator = img_header
 	
 	o.Insert(userObj)
-	
 	
 	this.Redirect("/", 302)
 }
