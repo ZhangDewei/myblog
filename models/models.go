@@ -9,7 +9,7 @@ import (
 
 type User struct{
 	Id int64
-	Name string `orm:"default(null);size(50)"`
+	Name string `orm:"default(null);size(50);index"`
 	Email string `orm:"default(null);size(100)"`
 	Password string `orm:"default(null);size(200)"`
 	Avator string `orm:"default(null);size(250)"`

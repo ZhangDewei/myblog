@@ -4,6 +4,13 @@
 	box-shadow:1px 1px 5px #5c5c5c;
 	margin:0 auto;
 	border-radius:8px;
+	position:absolute;
+	top:100px;
+	left:220px;
+	animation:formRun 1s;
+	-webkit-animation:formRun 1s;
+	-moz-animation:formRun 1s;
+	-ms-animation:formRun 1s;
 }
 
 label {
@@ -35,4 +42,20 @@ input {
 	width:50px;
 	height:45px;
 	vertical-align:middle;
+}
+
+@keyframes formRun {
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
+
+@-webkit-keyframes formRun{
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		opacity:0;};
 }

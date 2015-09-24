@@ -21,15 +21,14 @@ func getPath() string{
 
 func checkUsername(name string) bool{
 	o := orm.NewOrm()
-	o.Using("default")
-	user := models.User{Name: name}
-	err := o.Read(&user)
-	
-	if err == orm.ErrNoRows || err == orm.ErrMissPK{
-		return false
-	}else{
-		return true
-	}
+    var user models.User
+	result := o.QueryTable("user").Filter("name", name).One(&user)
+    fmt.Println(result)
+    if result == orm.ErrNoRows{
+        return true
+    }else{
+        return false
+    }   
 }
 
 type RegisterController struct{
@@ -51,10 +50,10 @@ func (this *RegisterController) Post(){
 	email := this.Input().Get("email")
 	gender := this.Input().Get("gender")
 	age := this.Input().Get("age")
-	
 	checkUser := checkUsername(username)
 	
 	if checkUser == false{
+        
 		this.Redirect("/register", 302)
 		return
 	}
