@@ -10,7 +10,6 @@ import (
 	"strings"
 	"myblog/models"
 	"strconv"
-    "myblog/lib"
 )
 
 func getPath() string{
@@ -50,7 +49,6 @@ func (this *RegisterController) CheckUserExist(){
     valid_user := existUsername(username)  
     result["content"] = valid_user
     this.Data["json"] = result
-    fmt.Println(valid_user)
     this.ServeJson()
 }
 
@@ -62,18 +60,13 @@ func (this *RegisterController) Post(){
 	email := this.Input().Get("email")
 	gender := this.Input().Get("gender")
 	age := this.Input().Get("age")
-    
-    newP := lib.HashPassword(password)
-    fmt.Println(newP)
-    dP := lib.HashPassword(password)
-    fmt.Println(dp)
-    
+
     valid_user := existUsername(username)    
     if valid_user == false{
         this.Redirect("/register", 302)
         return
     }
-	this.Redirect(("/register"), 302)
+
 	var path = getPath() + "static/img/head/"
 	var img_header string = ""
 	if img_err == nil{
@@ -84,18 +77,8 @@ func (this *RegisterController) Post(){
 	int_age, _ := strconv.Atoi(age)
 	int_gender, _ := strconv.Atoi(gender)
 	
-	o := orm.NewOrm()
-	o.Using("default")
-	
 	var userObj *models.User = new(models.User)
-	userObj.Name = username
-	userObj.Password = password
-	userObj.Email = email
-	userObj.Gender = int32(int_gender)
-	userObj.Age = int32(int_age)
-	userObj.Avator = img_header
-	
-	o.Insert(userObj)
-	
+	userObj.Add(username, email, password, img_header, int_gender, int_age)
+    this.SetSession("name", username)
 	this.Redirect("/", 302)
 }

@@ -5,6 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"time"
+	"myblog/lib"
 )
 
 type User struct{
@@ -15,10 +16,25 @@ type User struct{
 	Avator string `orm:"default(null);size(250)"`
 	Gender int32 `orm:"default(0)"`
 	Age int32 `orm:"default(0)"`
+	Status string `orm:"default(D);size(2)"`
 }
 
 func (user *User) toString() string{
 	return fmt.Sprint("user %s", user.Name)
+}
+
+func (user *User) Add(username string, email string, password string, avator string, gender int, age int){
+	hashPassword := lib.HashPassword(password)
+	
+	user.Name = username
+	user.Email = email
+	user.Password = hashPassword
+	user.Avator = avator
+	user.Gender = int32(gender)
+	user.Age = int32(age)
+	o := orm.NewOrm()
+	o.Using("default")
+	o.Insert(user)
 }
 
 type Article struct{

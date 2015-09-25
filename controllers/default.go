@@ -20,7 +20,10 @@ type HomeController struct{
 
 func (this *HomeController) Get(){
 	this.Data["Name"] = "dewei"
+    name := this.GetSession("name")
+    this.Data["session"] = name
 	this.TplNames = "index.html"
+    this.Layout = "layout.html"
 }
 
 type VideoController struct{
