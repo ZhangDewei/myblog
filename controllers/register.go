@@ -10,6 +10,7 @@ import (
 	"strings"
 	"myblog/models"
 	"strconv"
+    "myblog/lib"
 )
 
 func getPath() string{
@@ -62,12 +63,17 @@ func (this *RegisterController) Post(){
 	gender := this.Input().Get("gender")
 	age := this.Input().Get("age")
     
+    newP := lib.HashPassword(password)
+    fmt.Println(newP)
+    dP := lib.HashPassword(password)
+    fmt.Println(dp)
+    
     valid_user := existUsername(username)    
     if valid_user == false{
         this.Redirect("/register", 302)
         return
     }
-	
+	this.Redirect(("/register"), 302)
 	var path = getPath() + "static/img/head/"
 	var img_header string = ""
 	if img_err == nil{

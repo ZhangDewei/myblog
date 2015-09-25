@@ -3,8 +3,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
-    uglify = require('gulp-uglify'),
-    imgMin = require('gulp-imagemin')
+    uglify = require('gulp-uglify');
 
 var paths = {
     sass: ['./scss/*/*.scss', './scss/*scss'],
@@ -42,10 +41,6 @@ gulp.task('html', function(){
 
 gulp.task('img', function(){
     gulp.src(paths.img)
-    .pipe(imgMin({
-        progressive:true,
-        use:[pngquant({quality:'65-80'})]
-    }))
 	.pipe(gulp.dest('../static/img'));
 });  // function finish;
 
