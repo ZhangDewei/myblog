@@ -3,13 +3,14 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    imgMin = require('gulp-imagemin')
 
 var paths = {
     sass: ['./scss/*/*.scss', './scss/*scss'],
     uglify: ['./js/*/*.js', './js/*.js'],
     html: ['./templates/*/*.html', './templates/*.html'],
-    img: ['./img/*/*.*', './img/*.*']]
+    img: ['./img/*/*.*', './img/*.*']
 };
 
 gulp.task('default', ['sass', 'uglify', 'html', 'img']);
@@ -28,19 +29,23 @@ gulp.task('sass', function(done){
 });  // function finish;
 
 gulp.task('uglify', function(){
-    gulp.src(path.uglify)
+    gulp.src(paths.uglify)
 	.pipe(uglify())
 	.pipe(rename({extname: '.min.js'}))
 	.pipe(gulp.dest('../static/js'));
 });  // function finish;
 
 gulp.task('html', function(){
-    gulp.src(path.html)
+    gulp.src(paths.html)
 	.pipe(gulp.dest('../views'));
 });  // function finish;
 
 gulp.task('img', function(){
     gulp.src(paths.img)
+    .pipe(imgMin({
+        progressive:true,
+        use:[pngquant({quality:'65-80'})]
+    }))
 	.pipe(gulp.dest('../static/img'));
 });  // function finish;
 

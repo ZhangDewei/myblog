@@ -1,0 +1,103 @@
+.register-area{
+	width:550px;
+	padding:10px;
+	box-shadow:1px 1px 5px #5c5c5c;
+	margin:0 auto;
+	border-radius:8px;
+	position:absolute;
+	top:100px;
+	left:220px;
+	animation:formRun 1s;
+	-webkit-animation:formRun 1s;
+	-moz-animation:formRun 1s;
+	-ms-animation:formRun 1s;
+	-o-animation:formRun 1s;
+}
+
+label {
+	width:100px;
+	text-align:left;
+	display:inline-block;
+}
+
+input {
+	margin-left:10px;
+	border-radius:4px;
+	outline-style:none;
+	-webkit-appearance: none;
+	-moz-appearance:none;
+	appearance:none;
+    border: 1px solid #D0D0D0;
+    font-family: Verdana,Geneva,sans-serif,"宋体";
+    font:"16px/22px arial";
+    font-size: 12px;
+    height: 20px;
+    width:200px;
+    margin: 0 5px 0 0;
+    padding: 2px 0 2px 5px
+}
+
+input[type='submit'] {
+	cursor:pointer;
+	background-color:#ffffff;
+}
+
+#user-header {
+	display:none;
+}
+
+#click-user {
+	cursor:pointer;
+	width:200px;
+}
+
+#click-user img {
+	border-radius:50%;
+	width:50px;
+	height:45px;
+	vertical-align:middle;
+}
+
+@keyframes formRun {
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		-o-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
+
+@-webkit-keyframes formRun{
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		-o-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
+
+@-moz-keyframes formRun{
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		-o-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
+
+@-ms-keyframes formRun{
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
+
+@-o-keyframes formRun{
+	0% {transform:translate3d(0, -100px, 0);
+		-webkits-transform:translate3d(0, -100px, 0);
+		-moz-transform:translate3d(0, -100px, 0);
+		-ms-transform:translate3d(0, -100px, 0);
+		-o-transform:translate3d(0, -100px, 0);
+		opacity:0;};
+}
