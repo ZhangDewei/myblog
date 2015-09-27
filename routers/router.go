@@ -3,6 +3,7 @@ package routers
 import (
 	"github.com/astaxie/beego"
 	"myblog/controllers"
+	"myblog/controllers/dashboard"
 )
 
 func init() {
@@ -13,4 +14,5 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/login/checkuser", &controllers.LoginController{}, "post:CheckPwd")
 	beego.Router("/logout", &controllers.LogoutController{})
+	beego.Router("/dashboard", &dashboard.IndexDBController{})
 }
