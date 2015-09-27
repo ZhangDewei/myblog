@@ -82,6 +82,5 @@ func (this *RegisterController) Post() {
 	var userObj *models.User = new(models.User)
 	userObj.Add(username, email, password, img_header, int_gender, int_age)
 	lib.SetCookie(this.Ctx, username, password, contains.SmallCookieTime)
-	//this.SetSession("name", username)
 	this.Redirect("/", 302)
 }

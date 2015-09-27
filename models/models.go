@@ -16,6 +16,7 @@ type User struct {
 	Gender   int32  `orm:"default(0)"`
 	Age      int32  `orm:"default(0)"`
 	Status   string `orm:"default(D);size(2)"`
+	Super    int32  `orm:default(0)`
 }
 
 func (user *User) toString() string {
@@ -52,8 +53,26 @@ type Replay struct {
 	Created time.Time
 }
 
+type Video struct {
+	Id       int64
+	User     *User  `orm:"rel(fk);index"`
+	Url      string `orm:"size(500);default(null)"`
+	Comefrom string `orm:"size(50);default(null);index"`
+	Desc     string `orm:"size(50);default(null)"`
+	Created  time.Time
+}
+
+type Audio struct {
+	Id       int64
+	User     *User  `orm:"rel(fk);index"`
+	Url      string `orm:"size(500);default(null)"`
+	Comefrom string `orm:"size(500);default(null);index"`
+	Desc     string `orm:"size(500);default(null)"`
+	Created  time.Time
+}
+
 func CreateDB() {
-	orm.RegisterModel(new(User), new(Article), new(Replay))
+	orm.RegisterModel(new(User), new(Article), new(Replay), new(Video), new(Audio))
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
 	orm.RegisterDataBase("default", "mysql", "root:@/myblog?charset=utf8")
 }

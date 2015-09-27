@@ -47,6 +47,9 @@ gulp.task('img', function(){
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.uglify, ['uglify']);
+  gulp.watch(paths.img, function(){
+    gulp.run('default');
+  });
   gulp.watch(paths.html, function(){
     gulp.run('default');
   });

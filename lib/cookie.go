@@ -1,7 +1,7 @@
 package lib
 
 import (
-	//"fmt"
+	"fmt"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
 	"myblog/models"
@@ -18,22 +18,23 @@ func CheckAccount(ctx *context.Context) bool {
 }
 
 func SetCookie(ctx *context.Context, username, password string, expire int) {
-	ctx.SetCookie("uname", username, expire)
-	ctx.SetCookie("pwd", password, expire)
+	ctx.SetCookie("uname", username, expire, "/")
+	ctx.SetCookie("pwd", password, expire, "/")
 }
 
-func GetUserByCookie(ctx *context.Context) (interface{}, bool) {
+func GetUserByCookie(ctx *context.Context) ([]*models.User, bool) {
 	uk, unameErr := ctx.Request.Cookie("uname")
 	pk, pwdErr := ctx.Request.Cookie("pwd")
+	var result []*models.User
 	if unameErr != nil || pwdErr != nil {
-		return "", false
+		return result, false
 	}
 	o := orm.NewOrm()
-	var result []*models.User
-	o.QueryTable("user").Filter("Name", uk).Filter("Password", pk).One(&result)
+	o.QueryTable("user").Filter("Name", uk.Value).Filter("Password", models.HashPassword(pk.Value)).One(&result)
+	fmt.Println(result)
 	if len(result) > 0 {
 		return result, true
 	} else {
-		return "", false
+		return result, false
 	}
 }

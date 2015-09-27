@@ -24,12 +24,19 @@
 				<li><a href='/myvideo' class='a-nav'>our视频</a></li>
 				<li><a href='javascript:;' class='a-nav'>our音乐</a></li>
 				<li class="login-regist">
+					{{if .uname }}
+					<span>{{ .uname}}</span>
+					<span>
+						<a href='/logout'>退出</a>
+					</span>
+					{{else}}
 					<span>
 						<a href='/login' class='a-nav'>登录
 					</span>|
 					<span>
 						<a href='/register' class='a-nav'>注册</a>
 					</span>
+					{{end}}
 				</li>
 			</ul>
 		</div>
