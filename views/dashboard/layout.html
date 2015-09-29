@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="/static/js/jquery-1.11.3.min.js"></script>
+		<script src="/static/dashboard/js/bootstrap.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="/static/dashboard/css/bootstrap.min.css" />
+		<style>
+			.navbar-nav {float:none;}
+			.nav>li>a {display:inline-block;}
+		</style>
+		{{.HtmlHead}}
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/dashboard">Dashboard</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+			        <li {{if .video}}class="active"{{end}}><a href="/dashboard/video">视频</a></li>
+			        <li {{if .video}}class="active"{{end}}><a href="/dashboard/audio">音频</a></li>
+			        <li {{if .Image}}class="active"{{end}}><a href="/dashboard/image">图片</a></li>
+			        <li {{if .article}}class="active"{{end}}><a href="/dashboard/article">博文</a></li>
+			        <li style="float:right;"><a href="javascript:;">{{.username}}</a>|<a href="/">返回</a></li>
+			    </ul>
+			</div>
+		</nav>
+		<div class="content-area">
+			{{.LayoutContent}}
+		</div>
+		{{.Script}}
+	</body>
+</html>
