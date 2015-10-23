@@ -1,0 +1,11 @@
+<script>
+	var doc = document,
+		jsAddBtn = doc.getElementsByClassName('js-add-btn')[0],
+		formArea = doc.getElementsByClassName('form-area')[0],
+		userId = doc.getElementById('user-id');
+
+	userId.value = doc.documentElement.getAttribute('data-user-id') || doc.body.getAttribute('data-user-id');
+	jsAddBtn.onclick = function(){
+		formArea.style.display = 'block';
+	};  // function finish;
+</script>

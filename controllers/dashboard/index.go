@@ -29,6 +29,7 @@ func (this *IndexDBController) Get() {
 		return
 	}
 	this.Data["username"] = user[0].Name
+	this.Data["user_id"] = user[0].Id
 	this.TplNames = "dashboard/index.html"
 	this.Layout = "dashboard/layout.html"
 	this.LayoutSections = make(map[string]string)

@@ -62,6 +62,17 @@ type Video struct {
 	Created  time.Time
 }
 
+func (video *Video) Add(user *User, url string, comefrom string, desc string) {
+	o := orm.NewOrm()
+	o.Using("default")
+	video.User = user
+	video.Url = url
+	video.Comefrom = comefrom
+	video.Desc = desc
+	video.Created = time.Now()
+	o.Insert(video)
+}
+
 type Audio struct {
 	Id       int64
 	User     *User  `orm:"rel(fk);index"`

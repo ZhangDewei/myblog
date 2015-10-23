@@ -52,7 +52,6 @@ func (this *LoginController) Post() {
 	o := orm.NewOrm()
 	o.QueryTable("user").Filter("Name", username).Filter("Password", models.HashPassword(password)).One(&user)
 
-	fmt.Println("test 5555555")
 	if len(user) == 0 {
 		this.Redirect("/login", 302)
 		return
